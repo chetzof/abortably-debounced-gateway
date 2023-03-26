@@ -1,0 +1,55 @@
+{
+  "name": "template-ts",
+  "version": "1.0.0",
+  "description": "example template for ts project",
+  "author": "chetzof @chetzof",
+  "prettier": "chetzof-lint-config/prettier/.prettierrc.js",
+  "homepage": "https://github.com/chetzof/template-ts",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chetzof/template-ts.git"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "devDependencies": {
+    "chetzof-lint-config": "^1.0.13",
+    "eslint-define-config": "^1.17.0",
+    "husky": "^8.0.3",
+    "semantic-release": "^21.0.0",
+    "tsc-alias": "^1.8.4",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^5.0.2",
+    "vite-tsconfig-paths": "^4.0.7",
+    "vitest": "0.29.7"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist;tsc -p tsconfig.production.json; tsc-alias -p tsconfig.production.json",
+    "watch": "tsc -w -p tsconfig.production.json",
+    "lint": "npm run lint:tsc; npm run lint:eslint",
+    "fix": "npm run fix:prettier . && npm run fix:eslint .",
+    "fix:prettier": "prettier --write --ignore-unknown",
+    "fix:eslint": "NODE_ENV=production  eslint --fix",
+    "lint:eslint": "NODE_ENV=production  eslint .",
+    "lint:tsc": "tsc --noEmit -p tsconfig.production.json",
+    "prepack": "npm run build",
+    "test": "vitest",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release",
+    "lint-staged:test": "vitest related --run"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "types": "dist/index.d.ts",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
