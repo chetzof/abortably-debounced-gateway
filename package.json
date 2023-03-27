@@ -25,7 +25,7 @@
     "safe-stable-stringify": "^2.4.3"
   },
   "devDependencies": {
-    "chetzof-lint-config": "^1.0.13",
+    "chetzof-lint-config": "^1.0.14",
     "eslint-define-config": "^1.17.0",
     "husky": "^8.0.3",
     "semantic-release": "^21.0.0",
