@@ -28,7 +28,7 @@
     "chetzof-lint-config": "^1.0.13",
     "eslint-define-config": "^1.17.0",
     "husky": "^8.0.3",
-    "semantic-release": "^21.0.0",
+    "semantic-release": "^21.0.1",
     "tsc-alias": "^1.8.4",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^5.0.2",
