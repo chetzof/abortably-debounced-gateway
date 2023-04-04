@@ -37,3 +37,5 @@ export type OverloadedParameters<T> = T extends {
   : T extends (...arguments_: infer A) => any
   ? A
   : any
+
+export type SignalFunction<V, T extends Promise<V>> = (signal: AbortSignal) => T

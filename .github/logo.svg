@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <g class="nc-loop-heart-32-icon-o">
+        <path d="M27.764,6.26a7.593,7.593,0,0,0-10.8,0A7.746,7.746,0,0,0,16,7.45,7.6,7.6,0,0,0,5.423,5.279,7.733,7.733,0,0,0,3.269,15.944a7.634,7.634,0,0,0,.973,1.2L16,29,27.764,17.144a7.741,7.741,0,0,0,0-10.884Z" fill="none" stroke="#444" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+
+    <style>
+        .nc-loop-heart-32-icon-o {
+        --animation-duration: 1.8s;
+        }
+
+        .nc-loop-heart-32-icon-o * {
+        transform-origin: 50% 50%;
+        animation: nc-loop-heart-anim var(--animation-duration) infinite;
+        }
+
+        @keyframes nc-loop-heart-anim {
+        0%, 20%, 40%, 100% {
+        transform: scaleY(1);
+        }
+
+        10%, 30% {
+        transform: scale(0.8);
+        }
+        }
+    </style>
+</svg>

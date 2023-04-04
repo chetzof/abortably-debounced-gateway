@@ -25,32 +25,10 @@ Additonal promise-based helpers that let you handle some of the less common prob
   </a>
 </p>
 
-## Quickstart
-
-Install the package globally:
-
-```bash
-npx install linker-tinker
-```
-
-Run this comand from a directory:
-
-```bash
-lt sync ../my-dependency
-```
-
 ## Installation
 
-The **recommended** way to install the latest version of Astro is by running the command below:
-
 ```bash
-npm create astro@latest
-```
-
-You can also install Astro **manually** by running this command instead:
-
-```bash
-npm install --save-dev astro
+npm install promised-gateway
 ```
 
 ## Usage

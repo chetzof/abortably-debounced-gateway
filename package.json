@@ -25,15 +25,16 @@
     "safe-stable-stringify": "^2.4.3"
   },
   "devDependencies": {
-    "chetzof-lint-config": "^1.0.13",
+    "@types/lodash": "^4.14.192",
+    "chetzof-lint-config": "^1.0.14",
     "eslint-define-config": "^1.17.0",
     "husky": "^8.0.3",
-    "semantic-release": "^21.0.0",
-    "tsc-alias": "^1.8.4",
-    "tsconfig-paths": "^4.1.2",
-    "typescript": "^5.0.2",
-    "vite-tsconfig-paths": "^4.0.7",
-    "vitest": "0.29.7"
+    "semantic-release": "^21.0.1",
+    "tsc-alias": "^1.8.5",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.3",
+    "vite-tsconfig-paths": "^4.0.8",
+    "vitest": "0.29.8"
   },
   "scripts": {
     "build": "rm -rf ./dist;tsc -p tsconfig.production.json; tsc-alias -p tsconfig.production.json",
