@@ -27,6 +27,6 @@ it('execa', async () => {
   expect(execaSpy).toHaveBeenCalledTimes(0)
   await setTimeout(20)
   expect(execaSpy).toHaveBeenCalledTimes(1)
-  void gateway.runAuto(execaSpy, 'ls')
+  await gateway.runAuto(execaSpy, 'ls')
   expect(execaSpy.mock.calls[0][1].signal.aborted).toBe(true)
 })
