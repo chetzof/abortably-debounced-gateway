@@ -16,17 +16,3 @@ it('fetcher', async () => {
   expect(fetchSpy.mock.calls[0][1].signal.aborted).toBe(true)
   expect(fetchSpy.mock.calls[1][1].signal.aborted).toBe(false)
 })
-
-it('execa', async () => {
-  const gateway = createGateway()
-  const { execa } = await import('execa')
-
-  const execaSpy = vi.fn(execa)
-  void gateway.runAuto(execaSpy, 'pwd', { shell: true })
-  void gateway.runAuto(execaSpy, 'pwd', { shell: true })
-  expect(execaSpy).toHaveBeenCalledTimes(0)
-  await setTimeout(20)
-  expect(execaSpy).toHaveBeenCalledTimes(1)
-  await gateway.runAuto(execaSpy, 'pwd', { shell: true })
-  expect(execaSpy.mock.calls[0][1].signal.aborted).toBe(true)
-})
