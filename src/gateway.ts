@@ -33,7 +33,7 @@ export function createGateway() {
     () => Promise<any>
   >()
 
-  return {
+  const methods =  {
     run<V, P extends Promise<V>>(promiseFactory: SignalFunction<V, P>): P {
       if (!registry.has(promiseFactory)) {
         registry.set(promiseFactory, createAborter(promiseFactory))
@@ -62,5 +62,14 @@ export function createGateway() {
       const factory = registry.get(key) as () => OverloadedReturnType<T>
       return factory()
     },
+    wrapAuto<V, R extends Promise<V>, T extends (...arguments_: any[]) => R>(
+        executor: T,
+    ):(...executorArguments: OverloadedParameters<T>) =>  OverloadedReturnType<T>  {
+      return function (...executorArguments){
+        return methods.runAuto(executor, ...executorArguments)
+      }
+    },
   }
+
+  return methods
 }

@@ -24,6 +24,14 @@ it('debouncer should make only 1 call', async () => {
   expect(spy).toHaveBeenCalledTimes(1)
 })
 
+it('should wrap executor and passthrough its options', async () => {
+  const spy = vi.fn(async (_options: { enabled: boolean }) => true)
+  const factory = createGateway()
+  const a = factory.wrapAuto(spy)
+  await a({ enabled: true })
+  expect(spy).toHaveBeenCalledTimes(1)
+})
+
 it('case5 ', async () => {
   const factory = createGateway()
 
