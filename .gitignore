@@ -9,3 +9,6 @@ node_modules
 oclif.manifest.json
 .idea
 *.log
+/test-results/
+/playwright-report/
+/playwright/.cache/

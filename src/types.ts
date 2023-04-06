@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: "off" */
 export type OverloadedReturnType<T> = T extends {
   (...arguments_: any[]): infer R
   (...arguments_: any[]): infer R

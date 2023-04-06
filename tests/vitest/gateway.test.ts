@@ -6,7 +6,7 @@ import { createGateway } from '@/src/gateway'
 import {
   getConventionalTimeoutPromiseAborter,
   getTimeoutPromiseAborter,
-} from '@/tests/util'
+} from '@/tests/vitest/util'
 
 it('debouncer should make only 1 call', async () => {
   const spy = vi.fn(async (_argument1: string, _argument2) => true)

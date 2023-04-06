@@ -1,9 +1,10 @@
 {
   "extends": "./tsconfig.production.json",
+  "exclude": ["./src/shim.ts"],
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "dist/esm"
+    "module": "ES2020",
+    "moduleResolution": "node16",
+    "outDir": "dist/node-esm",
+    "declarationDir": "dist/types"
   }
 }

@@ -1,47 +1,52 @@
 {
-  "name": "template-ts",
+  "name": "promised-gateway",
   "version": "1.0.0",
   "description": "example template for ts project",
   "author": "chetzof @chetzof",
   "prettier": "chetzof-lint-config/prettier/.prettierrc.js",
-  "homepage": "https://github.com/chetzof/template-ts",
+  "homepage": "https://github.com/chetzof/promised-gateway",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chetzof/template-ts.git"
+    "url": "https://github.com/chetzof/promised-gateway.git"
   },
   "files": [
     "dist/*"
   ],
   "dependencies": {
     "collections-deep-equal": "^3.0.1",
+    "lodash.isequal": "^4.5.0",
     "lodash.isplainobject": "^4.0.6",
     "p-debounce": "^4.0.0",
     "p-defer": "^4.0.0"
   },
   "devDependencies": {
-    "p-state": "^1.0.0",
-    "@types/lodash": "^4.14.192",
+    "@playwright/test": "^1.32.2",
+    "@types/lodash.isequal": "^4.5.6",
+    "@types/lodash.isplainobject": "^4.0.7",
     "chetzof-lint-config": "^1.0.14",
     "eslint-define-config": "^1.17.0",
     "husky": "^8.0.3",
+    "npm-run-all": "^4.1.5",
+    "p-state": "^1.0.0",
     "semantic-release": "^21.0.1",
-    "tsc-alias": "1.8.0",
+    "tsc-alias": "1.8.5",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.3",
+    "vite": "^4.2.1",
     "vite-tsconfig-paths": "^4.0.8",
-    "vitest": "0.29.8",
-    "npm-run-all": "^4.1.5"
+    "vitest": "0.29.8"
   },
+  "type": "module",
   "scripts": {
-    "clean": "rm -rf ./lib",
-    "build": "clean && npm-run-all --parallel build:node:esm build:node:cjs build:browser:cjs",
-    "build:node:esm": "rm -rf ./dist/esm && tsc -p ./tsconfig.node.esm.json && tsc-alias --verbose -p tsconfig.node.esm.json && mv dist/esm/index.js dist/esm/index.mjs",
-    "build:old": "rm -rf ./dist && tsc -p ./tsconfig.production.json && tsc-alias --debug -p tsconfig.production.json",
-    "build:node:cjs": "rm -rf ./dist/cjs && tsc -p ./tsconfig.node.cjs.json && tsc-alias -p tsconfig.node.cjs.json",
-    "build:browser:cjs": "rm -rf ./dist/browser && tsc -p ./tsconfig.browser.cjs.json && tsc-alias -p tsconfig.browser.cjs.json",
-    "alias": "tsc-alias --debug -p  tsconfig.production.json",
+    "run-e2e-test-server": "cd ./tests/e2e/server && vite",
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && npm-run-all --parallel build:node:cjs build:node:esm build:browser",
+    "b": "npm-run-all clean  build:node build:browser",
+    "build:node:esm": "rm -rf ./dist/node-esm && tsc -p ./tsconfig.node.esm.json && tsc-alias -p tsconfig.node.esm.json",
+    "build:node:cjs": "rm -rf ./dist/node-cjs && vite build -c vite.config.node.cjs.js",
+    "build:browser": "rm -rf ./dist/browser-esm && vite build -c vite.config.browser.esm.js",
     "watch": "tsc -w -p tsconfig.production.json",
     "lint": "npm run lint:tsc; npm run lint:eslint",
     "fix": "npm run fix:prettier . && npm run fix:eslint .",
@@ -58,7 +63,15 @@
   "engines": {
     "node": ">=16"
   },
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/browser-esm/index.js",
+      "require": "./dist/node-cjs/index.cjs",
+      "import": "./dist/node-esm/index.js",
+      "default": "./dist/node-esm/index.js"
+    }
+  },
   "release": {
     "branches": [
       "main"

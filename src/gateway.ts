@@ -1,5 +1,5 @@
 import { Map } from 'collections-deep-equal'
-import isPlainObject from 'lodash/isPlainObject'
+import isPlainObject from 'lodash.isplainobject'
 
 import { createAborter } from '@/src/aborter.js'
 import type {
