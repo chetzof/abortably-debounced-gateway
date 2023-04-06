@@ -1,1 +1,1 @@
-export { createGateway } from '@/src/gateway'
+export { createGateway } from '@/src/gateway.js'

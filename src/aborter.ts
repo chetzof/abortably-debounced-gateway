@@ -1,7 +1,7 @@
 import pDebounce from 'p-debounce'
 import pDefer from 'p-defer'
 
-import type { SignalFunction } from '@/src/types'
+import type { SignalFunction } from '@/src/types.js'
 
 import type { DeferredPromise } from 'p-defer'
 

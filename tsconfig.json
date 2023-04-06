@@ -3,11 +3,10 @@
   "compilerOptions": {
     "declaration": true,
     "baseUrl": "./",
+    "rootDir": ".",
+    "outDir": "dist",
     "module": "commonjs",
-    "target": "es2019",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "target": "es2019"
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"],

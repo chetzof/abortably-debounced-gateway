@@ -1,12 +1,12 @@
 import { Map } from 'collections-deep-equal'
 import isPlainObject from 'lodash/isPlainObject'
 
-import { createAborter } from '@/src/aborter'
+import { createAborter } from '@/src/aborter.js'
 import type {
   OverloadedParameters,
   OverloadedReturnType,
   SignalFunction,
-} from '@/src/types'
+} from '@/src/types.js'
 
 function autowireParameters<T>(
   signal: AbortSignal,

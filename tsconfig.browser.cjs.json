@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "../src/browser",
+    "module": "CommonJS",
+    "outDir": "../lib/browser"
+  },
+  "include": ["../src/browser/**/*"]
+}

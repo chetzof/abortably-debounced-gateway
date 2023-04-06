@@ -1,7 +1,7 @@
 import { promiseStateAsync } from 'p-state'
 import { expect, it, vi } from 'vitest'
 
-import { createAborter } from '@/src/aborter'
+import { createAborter } from '@/src/aborter.js'
 import { getConventionalTimeoutPromiseAborter } from '@/tests/util'
 
 it('case1 ', async () => {
