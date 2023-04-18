@@ -32,12 +32,11 @@ it('should wrap executor and passthrough its options', async () => {
   expect(spy).toHaveBeenCalledTimes(1)
 })
 
-it('case5 ', async () => {
+it.only('case5 ', async () => {
   const factory = createGateway()
 
   const fun = async (signal: AbortSignal) =>
     getTimeoutPromiseAborter(200, signal)
-
   await Promise.all([factory.run(fun), factory.run(fun)])
 })
 

@@ -1,5 +1,5 @@
 import { promiseStateAsync } from 'p-state'
-import { expect, it, vi } from 'vitest'
+import { expect, it, vi, describe } from 'vitest'
 
 import { createAborter } from '@/src/aborter.js'
 import { getConventionalTimeoutPromiseAborter } from '@/tests/vitest/util'
@@ -80,4 +80,55 @@ it('the sequential calls should be debounced', async () => {
   expect(getConventionalTimeoutPromiseAborterSpy).toHaveBeenCalledTimes(0)
   await debounce()
   expect(getConventionalTimeoutPromiseAborterSpy).toHaveBeenCalledTimes(1)
+})
+
+describe.only('promise object augmentation', () => {
+  it('the promise should have a abort on its prototype', async () => {
+    const debounce = createAborter(
+      async (signal) => getConventionalTimeoutPromiseAborter(200, { signal }),
+      { debounceThreshold: false },
+    )
+
+    const promise1 = debounce()
+    const promise2 = debounce()
+
+    const promiseAll = expect(
+      Promise.all([promise1, promise2]),
+    ).rejects.toThrowError('This operation was aborted')
+    promise1.abortAndReject()
+    promise2.abortAndReject()
+    await promiseAll
+  })
+})
+
+describe('exception handling', () => {
+  it('the aborter should throw exceptions for external aborts', async () => {
+    const debounce = createAborter(
+      async (signal) => getConventionalTimeoutPromiseAborter(200, { signal }),
+      { debounceThreshold: false },
+    )
+
+    const promise = expect(
+      Promise.all([debounce(), debounce()]),
+    ).rejects.toThrowError('This operation was aborted')
+
+    debounce.abortAndReject()
+    await promise
+  })
+  it('the aborter should passthrough the exceptions unrelated to aborts', async () => {
+    const debounce = createAborter(
+      async () =>
+        new Promise((_resolve, reject) => {
+          reject(new Error('Reason'))
+        }),
+      { debounceThreshold: false },
+    )
+
+    const promise = expect(
+      Promise.all([debounce(), debounce()]),
+    ).rejects.toThrowError('Reason')
+
+    debounce.abortAndReject()
+    await promise
+  })
 })

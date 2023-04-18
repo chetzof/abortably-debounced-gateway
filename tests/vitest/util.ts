@@ -1,4 +1,4 @@
-import { clearTimeout } from 'node:timers'
+import { clearTimeout, setTimeout as setTimeoutCallback } from 'node:timers'
 
 export async function getTimeoutPromiseAborter(
   ms: number,
@@ -34,8 +34,23 @@ export async function getConventionalTimeoutPromiseAborter(
     }, ms)
 
     signal?.addEventListener('abort', () => {
+      console.log('aborted!')
       clearTimeout(timeoutID)
       reject(signal.reason)
     })
+  })
+}
+
+export async function getRejectingNoopPromise() {
+  return new Promise((_resolve, reject) => {
+    reject(new Error('Reason'))
+  })
+}
+
+export async function getResolvedNoopPromise() {
+  return new Promise<true>((resolve) => {
+    setTimeoutCallback(() => {
+      resolve(true)
+    }, 0)
   })
 }

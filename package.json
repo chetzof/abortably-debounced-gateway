@@ -19,7 +19,8 @@
     "lodash.isequal": "^4.5.0",
     "lodash.isplainobject": "^4.0.6",
     "p-debounce": "^4.0.0",
-    "p-defer": "^4.0.0"
+    "p-defer": "^4.0.0",
+    "promise-supplement": "^1.0.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.2",
@@ -33,6 +34,7 @@
     "semantic-release": "^21.0.1",
     "tsc-alias": "1.8.5",
     "tsconfig-paths": "^4.2.0",
+    "type-fest": "^3.8.0",
     "typescript": "^5.0.3",
     "vite": "^4.2.1",
     "vite-tsconfig-paths": "^4.0.8",
